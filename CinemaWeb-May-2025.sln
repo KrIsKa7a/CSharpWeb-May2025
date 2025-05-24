@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C8347219-1C67-45B6-BD1E-00FD5DDFF94C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{744666C0-E69F-4DA8-8445-BAA0139E624F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E9F39ADB-1A77-4205-8E24-7396BC55CF78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.GCommon", "CinemaApp.GCommon\CinemaApp.GCommon.csproj", "{7DD1F1DF-3F4F-432E-9BBF-1277081197F6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Data", "CinemaApp.Data\CinemaApp.Data.csproj", "{737FCBAF-0C43-442A-8766-DED1901E84B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Data.Common", "CinemaApp.Data.Common\CinemaApp.Data.Common.csproj", "{E6111C96-2B3A-47DA-9C81-9F3EE95B714B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Data.Models", "CinemaApp.Data.Models\CinemaApp.Data.Models.csproj", "{E3D1A47D-9414-4ED3-8F00-0AE89D29A8F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Web.ViewModels", "CinemaApp.Web.ViewModels\CinemaApp.Web.ViewModels.csproj", "{C9D77A74-05B7-4F4F-BB89-E20CBAB4780F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Web", "CinemaApp.Web\CinemaApp.Web.csproj", "{C1406CF7-D4CF-4BF5-A66D-D3BE81755CE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DD1F1DF-3F4F-432E-9BBF-1277081197F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD1F1DF-3F4F-432E-9BBF-1277081197F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD1F1DF-3F4F-432E-9BBF-1277081197F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD1F1DF-3F4F-432E-9BBF-1277081197F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{737FCBAF-0C43-442A-8766-DED1901E84B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{737FCBAF-0C43-442A-8766-DED1901E84B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{737FCBAF-0C43-442A-8766-DED1901E84B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{737FCBAF-0C43-442A-8766-DED1901E84B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6111C96-2B3A-47DA-9C81-9F3EE95B714B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6111C96-2B3A-47DA-9C81-9F3EE95B714B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6111C96-2B3A-47DA-9C81-9F3EE95B714B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6111C96-2B3A-47DA-9C81-9F3EE95B714B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3D1A47D-9414-4ED3-8F00-0AE89D29A8F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3D1A47D-9414-4ED3-8F00-0AE89D29A8F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3D1A47D-9414-4ED3-8F00-0AE89D29A8F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3D1A47D-9414-4ED3-8F00-0AE89D29A8F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D77A74-05B7-4F4F-BB89-E20CBAB4780F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D77A74-05B7-4F4F-BB89-E20CBAB4780F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D77A74-05B7-4F4F-BB89-E20CBAB4780F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D77A74-05B7-4F4F-BB89-E20CBAB4780F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1406CF7-D4CF-4BF5-A66D-D3BE81755CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1406CF7-D4CF-4BF5-A66D-D3BE81755CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1406CF7-D4CF-4BF5-A66D-D3BE81755CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1406CF7-D4CF-4BF5-A66D-D3BE81755CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{737FCBAF-0C43-442A-8766-DED1901E84B0} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E6111C96-2B3A-47DA-9C81-9F3EE95B714B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E3D1A47D-9414-4ED3-8F00-0AE89D29A8F8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{C9D77A74-05B7-4F4F-BB89-E20CBAB4780F} = {E9F39ADB-1A77-4205-8E24-7396BC55CF78}
+		{C1406CF7-D4CF-4BF5-A66D-D3BE81755CE1} = {E9F39ADB-1A77-4205-8E24-7396BC55CF78}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E01D5365-332F-4A49-8820-58BFB761EB89}
+	EndGlobalSection
+EndGlobal
