@@ -4,6 +4,7 @@
 
     using Services.Core.Interfaces;
     using ViewModels.Movie;
+    using static ViewModels.ValidationMessages.Movie;
 
     public class MovieController : Controller
     {
@@ -22,6 +23,36 @@
                 .GetAllMoviesAsync();
 
             return View(allMovies);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(MovieFormInputModel inputModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(inputModel);
+            }
+
+            try
+            {
+                await this.movieService.AddMovieAsync(inputModel);
+
+                return this.RedirectToAction(nameof(Index));
+            }
+            catch (Exception e)
+            {
+                // TODO: Implement it with the ILogger
+                Console.WriteLine(e.Message);
+
+                this.ModelState.AddModelError(string.Empty, ServiceCreateError);
+                return this.View(inputModel);
+            }
         }
     }
 }

@@ -1,0 +1,77 @@
+﻿@using static CinemaApp.GCommon.ApplicationConstants;
+@model CinemaApp.Web.ViewModels.Movie.MovieFormInputModel
+
+@{
+    ViewData["Title"] = "Add New Movie";
+
+    bool releaseDateExist = DateOnly
+        .TryParse(Model?.ReleaseDate, out DateOnly date);
+    string releateDateInputVal = releaseDateExist ?
+        date.ToString(AppDateFormat) : string.Empty;
+}
+
+
+<div class="container mt-5">
+    <h2 class="text-center text-warning fw-bold">Add a New Movie</h2>
+    <hr class="mb-4">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-controller="Movie" asp-action="Add" method="post" class="bg-dark text-light p-4 rounded shadow-lg">
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label fw-bold">Movie Title</label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter movie title">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Genre" class="form-label fw-bold">Genre</label>
+                    <input asp-for="Genre" class="form-control" placeholder="Enter genre">
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Director" class="form-label fw-bold">Director</label>
+                    <input asp-for="Director" class="form-control" placeholder="Enter director name">
+                    <span asp-validation-for="Director" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Duration" class="form-label fw-bold">Duration (minutes)</label>
+                    <input asp-for="Duration" class="form-control" type="number" placeholder="Enter duration">
+                    <span asp-validation-for="Duration" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ReleaseDate" class="form-label fw-bold">Release Date</label>
+                    <input asp-for="ReleaseDate" class="form-control" type="date" value="@releateDateInputVal">
+                    <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-bold">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter movie description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ImageUrl" class="form-label fw-bold">Image URL (optional)</label>
+                    <input asp-for="ImageUrl" class="form-control" placeholder="Enter image URL">
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success fw-bold px-4">
+                        <i class="bi bi-plus-circle"></i> Add Movie
+                    </button>
+                    <a asp-action="Manage" class="btn btn-outline-light ms-2">
+                        <i class="bi bi-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

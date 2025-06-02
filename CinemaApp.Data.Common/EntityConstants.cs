@@ -5,27 +5,57 @@
         public static class Movie
         {
             /// <summary>
-            /// Movie Title should be able to store text with length up to 150
+            /// Movie Title should be at least 2 characters and up to 100 characters.
             /// </summary>
-            public const int TitleMaxLength = 150;
+            public const int TitleMinLength = 2;
 
             /// <summary>
-            /// Movie Genre should be able to store text with length up to 30
+            /// Movie Title should be able to store text with length up to 100 characters.
             /// </summary>
-            public const int GenreMaxLength = 30;
+            public const int TitleMaxLength = 100;
 
             /// <summary>
-            /// Movie Director should be able to store text with length up to 150
+            /// Genre must be at least 3 characters.
             /// </summary>
-            public const int DirectorMaxLength = 150;
+            public const int GenreMinLength = 3;
 
             /// <summary>
-            /// Movie Description should be able to store text with length up to 1024
+            /// Movie Genre should be able to store text with length up to 50 characters.
             /// </summary>
-            public const int DescriptionMaxLength = 1024;
+            public const int GenreMaxLength = 50;
 
             /// <summary>
-            /// Movie ImageUrl should be able to store text with length up to 2048 (refer URI RFC)
+            /// Director name must be at least 2 characters.
+            /// </summary>
+            public const int DirectorNameMinLength = 2;
+
+            /// <summary>
+            /// Movie Director should be able to store text with length up to 100 characters.
+            /// </summary>
+            public const int DirectorNameMaxLength = 100;
+
+            /// <summary>
+            /// Movie Description must be at least 10 characters.
+            /// </summary>
+            public const int DescriptionMinLength = 10;
+
+            /// <summary>
+            /// Movie Description should be able to store text with length up to 1000 characters.
+            /// </summary>
+            public const int DescriptionMaxLength = 1000;
+
+            /// <summary>
+            /// Movie Duration should be between 1 and 300 minutes.
+            /// </summary>
+            public const int DurationMin = 1;
+
+            /// <summary>
+            /// Movie Duration should be between 1 and 300 minutes.
+            /// </summary>
+            public const int DurationMax = 300;
+
+            /// <summary>
+            /// Maximum allowed length for image URL.
             /// </summary>
             public const int ImageUrlMaxLength = 2048;
         }

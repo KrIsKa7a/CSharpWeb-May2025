@@ -35,7 +35,7 @@
             entity
                 .Property(m => m.Director)
                 .IsRequired()
-                .HasMaxLength(DirectorMaxLength);
+                .HasMaxLength(DirectorNameMaxLength);
 
             // Define constraints for the Duration column
             entity
