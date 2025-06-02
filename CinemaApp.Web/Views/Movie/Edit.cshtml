@@ -1,0 +1,75 @@
+﻿@using CinemaApp.Web.ViewModels.Movie
+@model MovieFormInputModel
+
+@{
+    ViewData["Title"] = "Edit Movie";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center text-warning fw-bold">Edit Movie</h2>
+    <hr class="mb-4">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Edit" method="post" class="bg-dark text-light p-4 rounded shadow-lg">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label fw-bold">Movie Title</label>
+                    <input asp-for="Title" class="form-control">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Genre" class="form-label fw-bold">Genre</label>
+                    <input asp-for="Genre" class="form-control">
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Director" class="form-label fw-bold">Director</label>
+                    <input asp-for="Director" class="form-control">
+                    <span asp-validation-for="Director" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Duration" class="form-label fw-bold">Duration (minutes)</label>
+                    <input asp-for="Duration" class="form-control" type="number">
+                    <span asp-validation-for="Duration" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ReleaseDate" class="form-label fw-bold">Release Date</label>
+                    <input asp-for="ReleaseDate" class="form-control" type="date"
+                           value="@(Model.ReleaseDate)">
+                    <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-bold">Description</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ImageUrl" class="form-label fw-bold">Image URL (optional)</label>
+                    <input asp-for="ImageUrl" class="form-control">
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary fw-bold px-4">
+                        <i class="bi bi-save"></i> Save Changes
+                    </button>
+                    <a asp-action="Index" asp-controller="Movie" class="btn btn-outline-light ms-2">
+                        <i class="bi bi-arrow-left"></i> Back to All Movies
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
