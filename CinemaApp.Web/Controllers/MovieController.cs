@@ -54,5 +54,30 @@
                 return this.View(inputModel);
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string? id)
+        {
+            try
+            {
+                MovieDetailsViewModel? movieDetails = await this.movieService
+                    .GetMovieDetailsByIdAsync(id);
+                if (movieDetails == null)
+                {
+                    // TODO: Custom 404 page
+                    return this.RedirectToAction(nameof(Index));
+                }
+
+                return this.View(movieDetails);
+            }
+            catch (Exception e)
+            {
+                // TODO: Implement it with the ILogger
+                // TODO: Add JS bars to indicate such errors
+                Console.WriteLine(e.Message);
+
+                return this.RedirectToAction(nameof(Index));
+            }
+        }
     }
 }
