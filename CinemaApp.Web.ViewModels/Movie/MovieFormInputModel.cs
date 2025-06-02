@@ -42,6 +42,6 @@
 
         [MaxLength(ImageUrlMaxLength, ErrorMessage = ImageUrlMaxLengthMessage)]
         public string? ImageUrl { get; set; }
-            = $"~/images/{NoImageUrl}";
+            = $"/images/{NoImageUrl}";
     }
 }

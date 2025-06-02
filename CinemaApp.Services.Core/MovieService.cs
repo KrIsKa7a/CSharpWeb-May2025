@@ -37,7 +37,7 @@
             {
                 if (String.IsNullOrEmpty(movie.ImageUrl))
                 {
-                    movie.ImageUrl = $"~/images/{NoImageUrl}";
+                    movie.ImageUrl = $"/images/{NoImageUrl}";
                 }
             }
 
@@ -81,7 +81,7 @@
                         Director = m.Director,
                         Duration = m.Duration,
                         Genre = m.Genre,
-                        ImageUrl = m.ImageUrl ?? $"~/images/{NoImageUrl}",
+                        ImageUrl = m.ImageUrl ?? $"/images/{NoImageUrl}",
                         ReleaseDate = m.ReleaseDate.ToString(AppDateFormat),
                         Title = m.Title
                     })
@@ -108,7 +108,7 @@
                         Director = m.Director,
                         Duration = m.Duration,
                         Genre = m.Genre,
-                        ImageUrl = m.ImageUrl ?? $"~/images/{NoImageUrl}",
+                        ImageUrl = m.ImageUrl ?? $"/images/{NoImageUrl}",
                         ReleaseDate = m.ReleaseDate.ToString(AppDateFormat),
                         Title = m.Title
                     })
@@ -136,7 +136,7 @@
             editableMovie.Director = inputModel.Director;
             editableMovie.Duration = inputModel.Duration;
             editableMovie.Genre = inputModel.Genre;
-            editableMovie.ImageUrl = inputModel.ImageUrl ?? $"~/images/{NoImageUrl}";
+            editableMovie.ImageUrl = inputModel.ImageUrl ?? $"/images/{NoImageUrl}";
             editableMovie.ReleaseDate = movieReleaseDate;
 
             await this.dbContext.SaveChangesAsync();
