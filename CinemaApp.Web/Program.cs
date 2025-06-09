@@ -40,6 +40,7 @@ namespace CinemaApp.Web
                 .AddEntityFrameworkStores<CinemaAppDbContext>();
             
             builder.Services.AddScoped<IMovieService, MovieService>();
+            builder.Services.AddScoped<IWatchlistService, WatchlistService>();
 
             builder.Services.AddControllersWithViews();
 
@@ -62,6 +63,7 @@ namespace CinemaApp.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

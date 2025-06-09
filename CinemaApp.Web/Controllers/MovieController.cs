@@ -1,26 +1,38 @@
 ﻿namespace CinemaApp.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using Services.Core.Interfaces;
     using ViewModels.Movie;
     using static ViewModels.ValidationMessages.Movie;
 
-    public class MovieController : Controller
+    public class MovieController : BaseController
     {
         private readonly IMovieService movieService;
+        private readonly IWatchlistService watchlistService;
 
         // Constructor of the Controller is invoked by ASP.NET Core
-        public MovieController(IMovieService movieService)
+        public MovieController(IMovieService movieService, IWatchlistService watchlistService)
         {
             this.movieService = movieService;
+            this.watchlistService = watchlistService;
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             IEnumerable<AllMoviesIndexViewModel> allMovies = await this.movieService
                 .GetAllMoviesAsync();
+            if (this.IsUserAuthenticated())
+            {
+                foreach (AllMoviesIndexViewModel movieIndexVM in allMovies)
+                {
+                    movieIndexVM.IsAddedToUserWatchlist = await this.watchlistService
+                        .IsMovieAddedToWatchlist(movieIndexVM.Id, this.GetUserId());
+                }
+            }
 
             return View(allMovies);
         }
@@ -56,6 +68,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(string? id)
         {
             try

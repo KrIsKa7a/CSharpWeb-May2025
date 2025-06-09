@@ -16,5 +16,7 @@
         public string Director { get; set; } = null!;
 
         public string? ImageUrl { get; set; }
+
+        public bool IsAddedToUserWatchlist { get; set; }
     }
 }

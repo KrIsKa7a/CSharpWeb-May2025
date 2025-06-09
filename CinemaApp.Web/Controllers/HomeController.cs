@@ -1,17 +1,20 @@
 namespace CinemaApp.Web.Controllers
 {
     using System.Diagnostics;
-    using CinemaApp.Web.ViewModels;
-    using Microsoft.AspNetCore.Mvc;
-    public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
+    using ViewModels;
+
+    public class HomeController : BaseController
+    {
+        public HomeController()
         {
-            _logger = logger;
+
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
