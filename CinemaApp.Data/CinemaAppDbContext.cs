@@ -1,6 +1,7 @@
 ﻿namespace CinemaApp.Data
 {
     using System.Reflection;
+
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,8 @@
         }
 
         public virtual DbSet<Movie> Movies { get; set; } = null!;
+
+        public virtual DbSet<ApplicationUserMovie> ApplicationUserMovies { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
