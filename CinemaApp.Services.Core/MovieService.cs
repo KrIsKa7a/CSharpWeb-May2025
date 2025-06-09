@@ -120,9 +120,7 @@
 
         public async Task<bool> EditMovieAsync(MovieFormInputModel inputModel)
         {
-            Movie? editableMovie = await this.dbContext
-                .Movies
-                .SingleOrDefaultAsync(m => m.Id.ToString() == inputModel.Id);
+            Movie? editableMovie = await this.FindMovieByStringId(inputModel.Id);
             if (editableMovie == null)
             {
                 return false;
@@ -142,6 +140,74 @@
             await this.dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<DeleteMovieViewModel?> GetMovieDeleteDetailsByIdAsync(string? id)
+        {
+            DeleteMovieViewModel? deleteMovieViewModel = null;
+
+            Movie? movieToBeDeleted = await this.FindMovieByStringId(id);
+            if (movieToBeDeleted != null)
+            {
+                deleteMovieViewModel = new DeleteMovieViewModel()
+                {
+                    Id = movieToBeDeleted.Id.ToString(),
+                    Title = movieToBeDeleted.Title,
+                    ImageUrl = movieToBeDeleted.ImageUrl ?? $"/images/{NoImageUrl}",
+                };
+            }
+
+            return deleteMovieViewModel;
+        }
+
+        public async Task<bool> SoftDeleteMovieAsync(string? id)
+        {
+            Movie? movieToDelete = await this.FindMovieByStringId(id);
+            if (movieToDelete == null)
+            {
+                return false;
+            }
+
+            // Soft Delete <=> Edit of IsDeleted property
+            movieToDelete.IsDeleted = true;
+
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteMovieAsync(string? id)
+        {
+            Movie? movieToDelete = await this.FindMovieByStringId(id);
+            if (movieToDelete == null)
+            {
+                return false;
+            }
+
+            // TODO: To be investigated when relations to Movie entity are introduced
+            this.dbContext.Movies.Remove(movieToDelete);
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        // TODO: Implement as generic method in BaseService
+        private async Task<Movie?> FindMovieByStringId(string? id)
+        {
+            Movie? movie = null;
+
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                bool isGuidValid = Guid.TryParse(id, out Guid movieGuid);
+                if (isGuidValid)
+                {
+                    movie = await this.dbContext
+                        .Movies
+                        .FindAsync(movieGuid);
+                }
+            }
+
+            return movie;
         }
     }
 }

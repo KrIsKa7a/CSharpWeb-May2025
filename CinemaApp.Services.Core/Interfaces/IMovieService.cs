@@ -13,5 +13,11 @@
         Task<MovieFormInputModel?> GetEditableMovieByIdAsync(string? id);
 
         Task<bool> EditMovieAsync(MovieFormInputModel inputModel);
+
+        Task<DeleteMovieViewModel?> GetMovieDeleteDetailsByIdAsync(string? id);
+
+        Task<bool> SoftDeleteMovieAsync(string? id);
+
+        Task<bool> DeleteMovieAsync(string? id);
     }
 }
