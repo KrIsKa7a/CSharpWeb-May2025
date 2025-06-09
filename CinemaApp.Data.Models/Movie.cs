@@ -32,5 +32,8 @@
         // TODO: Extract the property with Id to BaseDeletableModel
         [Comment("Shows if movie is deleted")]
         public bool IsDeleted { get; set; }
+
+        public virtual ICollection<ApplicationUserMovie> UserWatchlists { get; set; }
+            = new HashSet<ApplicationUserMovie>();
     }
 }
