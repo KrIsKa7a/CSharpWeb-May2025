@@ -60,6 +60,10 @@
                 .IsRequired()
                 .HasDefaultValue(false);
 
+            // Filter out only the active (non-deleted) entries
+            entity
+                .HasQueryFilter(m => m.IsDeleted == false);
+
             // Seed movies data with migration for development
             entity
                 .HasData(this.SeedMovies());
