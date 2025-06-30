@@ -59,5 +59,35 @@
             /// </summary>
             public const int ImageUrlMaxLength = 2048;
         }
+
+        public static class Cinema
+        {
+            /// <summary>
+            /// Cinema Name must be at least 2 characters.
+            /// </summary>
+            public const int NameMinLength = 2;
+
+            /// <summary>
+            /// Cinema Name should be able to store text with length up to 80 characters.
+            /// </summary>
+            public const int NameMaxLength = 80;
+
+            /// <summary>
+            /// Cinema Location must be at least 2 characters.
+            /// </summary>
+            public const int LocationMinLength = 2;
+
+            /// <summary>
+            /// Cinema Location should be able to store text with length up to 50 characters.
+            /// </summary>
+            public const int LocationMaxLength = 50;
+        }
+
+        public static class CinemaMovie
+        {
+            public const int AvailableTicketsDefaultValue = 0;
+            public const int ShowtimeMaxLength = 5;
+            public const string ShowtimeFormat = "{hh}:{mm}";
+        }
     }
 }
