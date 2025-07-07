@@ -3,6 +3,7 @@ namespace CinemaApp.Web
     using Data;
     using Data.Repository;
     using Data.Repository.Interfaces;
+    using Infrastructure.Extensions;
     using Services.Core;
     using Services.Core.Interfaces;
 
@@ -43,13 +44,15 @@ namespace CinemaApp.Web
 
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
             builder.Services.AddScoped<IWatchlistRepository, WatchlistRepository>();
+            builder.Services.AddScoped<IManagerRepository, ManagerRepository>();
 
             builder.Services.AddScoped<IMovieService, MovieService>();
             builder.Services.AddScoped<IWatchlistService, WatchlistService>();
+            builder.Services.AddScoped<IManagerService, ManagerService>();
 
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
+            WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -70,6 +73,7 @@ namespace CinemaApp.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseManagerAccessRestriction();
 
             app.MapControllerRoute(
                 name: "default",

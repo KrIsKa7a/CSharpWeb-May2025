@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CinemaApp.GCommon\CinemaApp.GCommon.csproj" />
+    <ProjectReference Include="..\CinemaApp.Services.Core\CinemaApp.Services.Core.csproj" />
   </ItemGroup>
 
 </Project>
