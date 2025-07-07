@@ -19,6 +19,7 @@ namespace CinemaApp.Web
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
 										?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
+            // TODO: Implement extension methods for adding DbContext, Identity and Repositories to the ServiceCollection
             builder.Services
 	            .AddDbContext<CinemaAppDbContext>(options =>
 	            {
@@ -45,10 +46,8 @@ namespace CinemaApp.Web
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
             builder.Services.AddScoped<IWatchlistRepository, WatchlistRepository>();
             builder.Services.AddScoped<IManagerRepository, ManagerRepository>();
-
-            builder.Services.AddScoped<IMovieService, MovieService>();
-            builder.Services.AddScoped<IWatchlistService, WatchlistService>();
-            builder.Services.AddScoped<IManagerService, ManagerService>();
+            
+            builder.Services.AddUserDefinedServices(typeof(IMovieService).Assembly);
 
             builder.Services.AddControllersWithViews();
 
