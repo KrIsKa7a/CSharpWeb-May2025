@@ -27,6 +27,12 @@
                 .Property(c => c.IsDeleted)
                 .HasDefaultValue(false);
 
+            entity
+                .HasOne(c => c.Manager)
+                .WithMany(m => m.ManagedCinemas)
+                .HasForeignKey(c => c.ManagerId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             // Define composite index of columns Name and Location to ensure unique combinations only
             entity
                 .HasIndex(c => new { c.Name, c.Location })

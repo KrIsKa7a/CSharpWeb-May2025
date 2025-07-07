@@ -17,6 +17,11 @@
         [Comment("Shows if cinema is deleted")]
         public bool IsDeleted { get; set; }
 
+        [Comment("Cinema's manager")]
+        public Guid? ManagerId { get; set; }
+
+        public virtual Manager? Manager { get; set; }
+
         public virtual ICollection<CinemaMovie> CinemaMovies { get; set; }
             = new HashSet<CinemaMovie>();
     }
