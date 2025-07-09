@@ -40,6 +40,7 @@
         {
             try
             {
+                // TODO: Implement showing Showtimes on Program and choosing Showtime when buying a Ticket
                 CinemaProgramViewModel? cinemaProgram = await this.cinemaService
                     .GetCinemaProgramAsync(id);
                 if (cinemaProgram == null)

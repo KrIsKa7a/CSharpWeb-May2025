@@ -52,6 +52,7 @@
                         CinemaData = cinema.Name + " - " + cinema.Location,
                         Movies = cinema.CinemaMovies
                             .Select(cm => cm.Movie)
+                            .DistinctBy(m => m.Id)
                             .Select(m => new CinemaProgramMovieViewModel()
                             {
                                 Id = m.Id.ToString(),
@@ -85,6 +86,7 @@
                         Location = cinema.Location,
                         Movies = cinema.CinemaMovies
                             .Select(cm => cm.Movie)
+                            .DistinctBy(m => m.Id)
                             .Select(m => new CinemaDetailsMovieViewModel()
                             {
                                 Title = m.Title,
