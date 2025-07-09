@@ -7,5 +7,7 @@
         Task<IEnumerable<UsersCinemaIndexViewModel>> GetAllCinemasUserViewAsync();
 
         Task<CinemaProgramViewModel?> GetCinemaProgramAsync(string? cinemaId);
+
+        Task<CinemaDetailsViewModel?> GetCinemaDetailsAsync(string? cinemaId);
     }
 }

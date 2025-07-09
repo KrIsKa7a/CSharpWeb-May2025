@@ -56,5 +56,28 @@
                 return this.RedirectToAction(nameof(Index));
             }
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(string? id)
+        {
+            try
+            {
+                CinemaDetailsViewModel? cinemaProgram = await this.cinemaService
+                    .GetCinemaDetailsAsync(id);
+                if (cinemaProgram == null)
+                {
+                    return this.RedirectToAction(nameof(Index));
+                }
+
+                return this.View(cinemaProgram);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+
+                return this.RedirectToAction(nameof(Index));
+            }
+        }
     }
 }

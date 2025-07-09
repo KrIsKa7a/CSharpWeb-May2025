@@ -66,5 +66,36 @@
 
             return cinemaProgram;
         }
+
+        public async Task<CinemaDetailsViewModel?> GetCinemaDetailsAsync(string? cinemaId)
+        {
+            CinemaDetailsViewModel? cinemaDetails = null;
+            if (!String.IsNullOrWhiteSpace(cinemaId))
+            {
+                Cinema? cinema = await this.cinemaRepository
+                    .GetAllAttached()
+                    .Include(c => c.CinemaMovies)
+                    .ThenInclude(cm => cm.Movie)
+                    .SingleOrDefaultAsync(c => c.Id.ToString().ToLower() == cinemaId.ToLower());
+                if (cinema != null)
+                {
+                    cinemaDetails = new CinemaDetailsViewModel()
+                    {
+                        Name = cinema.Name,
+                        Location = cinema.Location,
+                        Movies = cinema.CinemaMovies
+                            .Select(cm => cm.Movie)
+                            .Select(m => new CinemaDetailsMovieViewModel()
+                            {
+                                Title = m.Title,
+                                Duration = m.Duration.ToString(),
+                            })
+                            .ToArray(),
+                    };
+                }
+            }
+
+            return cinemaDetails;
+        }
     }
 }
