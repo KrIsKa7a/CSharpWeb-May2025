@@ -1,0 +1,16 @@
+﻿@model IEnumerable<string>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <input type="text" id="searchBar" class="form-control shadow-sm" placeholder="Search for a cinema..." onkeyup="filterCinemas()">
+    </div>
+    <div class="col-md-6">
+        <select id="cityFilter" class="form-select shadow-sm" onchange="filterCinemas()">
+            <option value="">All Cities</option>
+            @foreach (var city in Model)
+            {
+                <option value="@city">@city</option>
+            }
+        </select>
+    </div>
+</div>

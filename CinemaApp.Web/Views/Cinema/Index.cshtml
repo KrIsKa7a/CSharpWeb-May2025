@@ -1,0 +1,60 @@
+﻿@using CinemaApp.Web.ViewModels.Cinema
+@model IEnumerable<UsersCinemaIndexViewModel>
+
+@{
+    ViewData["Title"] = "Explore Cinemas";
+    IEnumerable<string> cinemaLocations = Model
+        .Select(c => c.Location)
+        .Distinct();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/user.css">
+}
+
+<div class="">
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="text-light fw-bold">Discover Cinemas Near You</h1>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary fw-bold">
+                <i class="bi bi-arrow-left"></i> Back to Home Page
+            </a>
+        </div>
+
+        <partial name="_CinemaSearchAndFilterPartial" model="cinemaLocations" />
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="cinemaContainer">
+            @foreach (UsersCinemaIndexViewModel cinema in Model.Take(8))
+            {
+                <div class="col cinema-card" data-city="@cinema.Location.ToLower()">
+                    <div class="card shadow-lg border-0 rounded-3 h-100 cinema-index-card">
+                        <img src="~/images/cinema-panoramic-megeve.jpg"
+                             class="card-img-top"
+                             alt="cinema.Name"
+                             style="height: 160px; object-fit: cover; border-radius: 8px 8px 0 0;">
+                        <div class="card-body text-center">
+                            <h6 class="card-title fw-bold text-dark">@cinema.Name</h6>
+                            <p class="card-text text-muted small"><i class="bi bi-geo-alt-fill"></i> @cinema.Location</p>
+                            <a asp-controller="Cinema" asp-action="Program" asp-route-id="@cinema.Id"
+                               class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                <i class="fas fa-eye"></i> View Program
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model.Count() > 8)
+        {
+            <div class="text-center mt-4">
+                <button id="loadMoreBtn" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm">Load More</button>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/cinemas.js"></script>
+    <script src="~/js/pagination.js"></script>
+}
