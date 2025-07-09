@@ -88,7 +88,7 @@
                     return;
                 }
 
-                $.post("/Watchlist/AddToWatchlist", { movieId: movieId })
+                $.post("/Watchlist/Add", { movieId: movieId })
                     .done(function () {
                         Swal.fire({
                             title: "Added!",
@@ -123,7 +123,7 @@ $(document).ready(function () {
             return;
         }
 
-        $.post("/Watchlist/AddToWatchlist", { movieId: movieId })
+        $.post("/Watchlist/Add", { movieId: movieId })
             .done(function () {
                 Swal.fire({
                     title: "Added!",
