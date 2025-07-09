@@ -42,7 +42,7 @@ namespace CinemaApp.Data.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("ApplicationUserMovies", t =>
+                    b.ToTable("ApplicationUserMovies", null, t =>
                         {
                             t.HasComment("User Watchlist entry in the system.");
                         });
@@ -84,7 +84,7 @@ namespace CinemaApp.Data.Migrations
                     b.HasIndex("Name", "Location")
                         .IsUnique();
 
-                    b.ToTable("Cinemas", t =>
+                    b.ToTable("Cinemas", null, t =>
                         {
                             t.HasComment("Cinema in the system");
                         });
@@ -130,7 +130,7 @@ namespace CinemaApp.Data.Migrations
                     b.HasIndex("MovieId", "CinemaId", "Showtime")
                         .IsUnique();
 
-                    b.ToTable("CinemasMovies", t =>
+                    b.ToTable("CinemasMovies", null, t =>
                         {
                             t.HasComment("Movie projection in a cinema in the system");
                         });
@@ -158,7 +158,7 @@ namespace CinemaApp.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Managers", t =>
+                    b.ToTable("Managers", null, t =>
                         {
                             t.HasComment("Manager in the system");
                         });
@@ -216,7 +216,7 @@ namespace CinemaApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies", t =>
+                    b.ToTable("Movies", null, t =>
                         {
                             t.HasComment("Movie in the system");
                         });
@@ -399,7 +399,7 @@ namespace CinemaApp.Data.Migrations
                     b.HasIndex("CinemaMovieId", "UserId")
                         .IsUnique();
 
-                    b.ToTable("Tickets", t =>
+                    b.ToTable("Tickets", null, t =>
                         {
                             t.HasComment("Ticket in the system");
                         });

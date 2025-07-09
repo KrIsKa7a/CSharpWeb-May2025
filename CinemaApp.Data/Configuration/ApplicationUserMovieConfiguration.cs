@@ -38,14 +38,10 @@
                 .HasForeignKey(aum => aum.MovieId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Define query filter to hide the ApplicationUserMovie entries referring deleted Movie
-            // Solves the problem with relations during delete
-            entity
-                .HasQueryFilter(aum => aum.Movie.IsDeleted == false);
-
             // Define query filter to hide the deleted entries in the user Watchlist
             entity
-                .HasQueryFilter(aum => aum.IsDeleted == false);
+                .HasQueryFilter(aum => aum.IsDeleted == false &&
+                                                        aum.Movie.IsDeleted == false);
         }
     }
 }
