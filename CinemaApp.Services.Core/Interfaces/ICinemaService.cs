@@ -5,5 +5,7 @@
     public interface ICinemaService
     {
         Task<IEnumerable<UsersCinemaIndexViewModel>> GetAllCinemasUserViewAsync();
+
+        Task<CinemaProgramViewModel?> GetCinemaProgramAsync(string? cinemaId);
     }
 }
