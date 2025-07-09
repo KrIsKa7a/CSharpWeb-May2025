@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/errors.css" />
+}
+
+<div class="cinema-bg d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="error-container card">
+        <div class="error-code">403</div>
+        <div class="error-message">Access Denied</div>
+        <div class="error-description">
+            You do not have permission to view this page.<br />
+            If you believe this is a mistake, please contact the administrator.
+        </div>
+
+        <a asp-controller="Home" asp-action="Index" class="btn-home">Return to Homepage</a>
+    </div>
+</div>

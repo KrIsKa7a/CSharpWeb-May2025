@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Not Found";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/errors.css"/>    
+}
+
+<div class="cinema-bg d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="error-container card">
+        <div class="error-code">404</div>
+        <div class="error-message">Page Not Found</div>
+        <div class="error-description">
+            Oops! The page you are looking for doesn't exist or has been moved.<br />
+            Please check the URL or return to the homepage.
+        </div>
+
+        <a asp-controller="Home" asp-action="Index" class="btn-home">Return to Homepage</a>
+    </div>
+</div>

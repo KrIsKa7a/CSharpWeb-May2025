@@ -1,0 +1,111 @@
+﻿.error-container {
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.5) !important; /* Override .card */
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    max-width: 500px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    margin: auto;
+}
+
+.error-code {
+    font-size: 120px;
+    font-weight: bold;
+    color: #ffcc00; /* Yellow accent */
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.7);
+    margin-bottom: 10px;
+}
+
+.error-message {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.error-description {
+    font-size: 16px;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.btn-home {
+    padding: 12px 24px;
+    font-size: 16px;
+    background: #ff4d4d;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.btn-home:hover {
+    background: #e63946;
+    transform: scale(1.05);
+}
+
+.custom-404-wrapper {
+    background-color: #4a4a4a;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-404-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.custom-404-code {
+    font-size: 120px;
+    font-weight: 900;
+    color: #ffcc00;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px;
+}
+
+.custom-404-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+}
+
+.custom-404-message {
+    font-size: 16px;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.custom-404-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.custom-404-btn:hover {
+    background-color: #e63946;
+    transform: scale(1.05);
+}

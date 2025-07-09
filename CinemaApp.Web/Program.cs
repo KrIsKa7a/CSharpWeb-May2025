@@ -17,7 +17,7 @@ namespace CinemaApp.Web
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
 										?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-            // TODO: Implement extension methods for adding DbContext, Identity and Repositories to the ServiceCollection
+            // TODO: Implement extension methods for adding DbContext, Identity
             builder.Services
 	            .AddDbContext<CinemaAppDbContext>(options =>
 	            {
@@ -59,6 +59,8 @@ namespace CinemaApp.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
