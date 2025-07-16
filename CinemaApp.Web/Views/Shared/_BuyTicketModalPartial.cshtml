@@ -11,6 +11,18 @@
             <div class="modal-body bg-light text-dark">
                 <input type="hidden" id="cinemaId">
                 <input type="hidden" id="movieId">
+                
+                <div id="availableTicketsDiv" class="mb-3" hidden>
+                    <label class="form-label fw-bold text-dark">Available Tickets:</label>
+                    <p id="availableTicketsCount" class="text-success fw-bold mb-0">Loading...</p>
+                </div>
+
+                <label for="showtimeSelect" class="form-label fw-bold text-dark">Select Showtime:</label>
+                <select id="showtimeSelect" class="form-select border-dark">
+                    <option value="" disabled selected>Choose a time</option>
+                    <option value="2025-07-16T19:00">19:00</option>
+                    <option value="2025-07-16T21:30">21:30</option>
+                </select>
 
                 <label for="quantity" class="form-label fw-bold text-dark">Number of Tickets:</label>
                 <input type="number" id="quantity" class="form-control border-dark" min="1" value="1">
