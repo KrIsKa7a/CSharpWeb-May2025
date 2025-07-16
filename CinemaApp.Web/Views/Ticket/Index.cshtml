@@ -1,0 +1,59 @@
+﻿@using CinemaApp.Web.ViewModels.Ticket
+@model IEnumerable<TicketIndexViewModel>
+
+@{
+    ViewData["Title"] = "My Tickets";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/user.css">
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="text-light fw-bold">My Tickets</h1>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary fw-bold">
+            <i class="bi bi-arrow-left"></i> Back to Home Page
+        </a>
+    </div>
+
+    <div class="d-flex flex-column gap-2">
+        @foreach (var ticket in Model)
+        {
+            <div class="card shadow-lg border-0 rounded-3 d-flex flex-row align-items-center p-2"
+                 style="height: 140px; max-height: 140px; background: rgba(34, 34, 34, 0.95);">
+
+                <img src="@ticket.MovieImageUrl" class="rounded"
+                     alt="@ticket.MovieTitle"
+                     style="width: 100px; height: 130px; object-fit: cover;">
+
+                <div class="card-body ms-3 p-2 text-light" style="flex-grow: 1;">
+                    <h6 class="fw-bold mb-1 text-light">@ticket.MovieTitle</h6>
+                    <p class="text-muted mb-0" style="font-size: 0.85rem;">
+                        <strong>Cinema:</strong> @ticket.CinemaName
+                    </p>
+                    <p class="text-muted mb-1" style="font-size: 0.85rem;">
+                        <strong>Ticket Price:</strong> <span class="text-success">$@ticket.TicketPrice</span>
+                    </p>
+                    <p class="text-muted mb-1" style="font-size: 0.85rem;">
+                        <strong>Total Price:</strong> <span class="text-warning">$@ticket.TicketPrice</span>
+                    </p>
+                    <p class="text-muted mb-0" style="font-size: 0.85rem;">
+                        <strong>Showtime:</strong>
+                        <span class="showtime-box">@ticket.Showtime</span>
+                    </p>
+                </div>
+
+                <div class="me-3">
+                    <span class="badge bg-warning fw-bold" style="font-size: 1rem; padding: 6px 12px;">
+                        @ticket.TicketCount x
+                    </span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@* @section Scripts {
+    <script src="~/js/tickets.js"></script>
+} *@
