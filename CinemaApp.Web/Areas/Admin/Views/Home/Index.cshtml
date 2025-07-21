@@ -1,0 +1,56 @@
+﻿<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4 mb-3 text-warning fw-bold">Welcome to the Admin Dashboard</h1>
+        <p class="lead mb-5 text-light">Manage your application using the sections below:</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 bg-dark text-white rounded-3 h-100">
+                <div class="card-body d-flex flex-column align-items-center text-center">
+                    <i class="bi bi-people-fill text-warning display-3 mb-3"></i>
+                    <h5 class="card-title fw-bold">Manage Users</h5>
+                    <p class="card-text text-muted">Add, edit, or remove users and assign roles.</p>
+                    <div class="mt-auto w-100">
+                        <a asp-area="Admin" asp-controller="UserManagement" asp-action="Index"
+                           class="btn btn-warning fw-bold shadow-sm w-100 py-2">
+                            <i class="bi bi-person-badge-fill"></i> Go to Users
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 bg-dark text-white rounded-3 h-100">
+                <div class="card-body d-flex flex-column align-items-center text-center">
+                    <i class="bi bi-film text-primary display-3 mb-3"></i>
+                    <h5 class="card-title fw-bold">Manage Cinemas</h5>
+                    <p class="card-text text-muted">Create, update, and delete cinema entries.</p>
+                    <div class="mt-auto w-100">
+                        <a asp-area="Admin" asp-controller="CinemaManagement" asp-action="Manage"
+                           class="btn btn-primary fw-bold shadow-sm w-100 py-2">
+                            <i class="bi bi-building"></i> Go to Cinemas
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 bg-dark text-white rounded-3 h-100">
+                <div class="card-body d-flex flex-column align-items-center text-center">
+                    <i class="bi bi-camera-reels-fill text-danger display-3 mb-3"></i>
+                    <h5 class="card-title fw-bold">Manage Movies</h5>
+                    <p class="card-text text-muted">Add new movies, edit details, or remove them.</p>
+                    <div class="mt-auto w-100">
+                        <a asp-area="Admin" asp-controller="MovieManagement" asp-action="Manage"
+                           class="btn btn-danger fw-bold shadow-sm w-100 py-2">
+                            <i class="bi bi-play-btn-fill"></i> Go to Movies
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
