@@ -64,7 +64,9 @@
     });
 
     $('#showtimeSelect').change(function () {
-        let selectedVal = $(this).val();
+        const selectedVal = $(this).val();
+        const cinemaId = $("#cinemaId").val();
+        const movieId = $("#movieId").val();
 
         if (selectedVal !== "") {
             $("#availableTicketsDiv").prop("hidden", false);
@@ -105,32 +107,32 @@
 
     $("#buyTicketButton").on("click", function () {
         const requestData = {
-            cinemaId: $("#cinemaId").val().trim(),
-            movieId: $("#movieId").val().trim(),
-            showtime: $("#showtimeSelect").val().trim(),
-            quantity: parseInt($("#quantity").val(), 10)
+            CinemaId: $("#cinemaId").val().trim(),
+            MovieId: $("#movieId").val().trim(),
+            Showtime: $("#showtimeSelect").val().trim(),
+            Quantity: parseInt($("#quantity").val(), 10)
         };
 
         console.log("Submitting Request:", requestData); // ✅ Added for Debugging
 
-        if (!requestData.quantity || requestData.quantity < 1) {
+        if (!requestData.Quantity || requestData.Quantity < 1) {
             $("#errorMessage").text("Please enter a valid ticket quantity.").removeClass("d-none");
             return;
         }
 
         $.ajax({
-            url: "https://localhost:7165/TicketApi/Buy",
+            url: "https://localhost:7180/api/internal/TicketApi/Buy",
             method: "POST",
-            contentType: "text/plain",
+            contentType: "application/json",
             data: JSON.stringify(requestData),
             xhrFields: {
                 withCredentials: true,
             },
-            crossDomain: true,
             success: function (response) {
                 console.log("Success Response:", response); // ✅ Log the success response
                 Swal.fire("Success!", "Your ticket has been purchased successfully!", "success");
                 $("#buyTicketModal").modal("hide");
+                $('#availableTicketsCount').prop("hidden", true);
             },
             error: function (xhr) {
                 let errorMessage = "An error occurred while purchasing tickets.";

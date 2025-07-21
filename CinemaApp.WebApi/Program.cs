@@ -60,6 +60,7 @@ namespace CinemaApp.WebApi
 
             app.UseCors(AllowAllDomainsPolicy);
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapIdentityApi<IdentityUser>();

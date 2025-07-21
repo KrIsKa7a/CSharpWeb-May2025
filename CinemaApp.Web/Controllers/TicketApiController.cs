@@ -1,13 +1,11 @@
-﻿namespace CinemaApp.WebApi.Controllers
+﻿namespace CinemaApp.Web.Controllers
 {
-    using System.ComponentModel.DataAnnotations;
-
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using Services.Core.Interfaces;
-    
-    public class TicketApiController : BaseExternalApiController
+    using ViewModels.Ticket;
+
+    public class TicketApiController : BaseInternalApiController
     {
         private readonly ITicketService ticketService;
 
@@ -21,13 +19,11 @@
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Route("Buy")]
-        [Authorize]
-        public async Task<ActionResult> BuyTicket([Required]string cinemaId, 
-            [Required]string movieId, int quantity, [Required]string showtime)
+        public async Task<ActionResult> BuyTicket([FromBody] BuyTicketInputModel ticketInputModel)
         {
             string? userId = this.GetUserId();
             bool result = await this.ticketService
-                .AddTicketAsync(cinemaId, movieId, quantity, showtime, userId);
+                .AddTicketAsync(ticketInputModel.CinemaId, ticketInputModel.MovieId, ticketInputModel.Quantity, ticketInputModel.Showtime, userId);
             if (result == false)
             {
                 return this.BadRequest();
