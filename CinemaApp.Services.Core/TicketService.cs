@@ -61,16 +61,28 @@
                 if (projection != null &&
                     projection.AvailableTickets >= quantity)
                 {
-                    // TODO: Implement ticket pricing elsewhere
-                    Ticket newTicket = new Ticket()
+                    Ticket? projectionTicket = this.ticketRepository
+                        .SingleOrDefault(t =>
+                            t.CinemaMovieId.ToString().ToLower() == projection.Id.ToString().ToLower() &&
+                            t.UserId.ToLower() == userId.ToLower());
+                    if (projectionTicket != null)
                     {
-                        Quantity = quantity,
-                        CinemaMovieProjection = projection,
-                        UserId = userId,
-                        Price = 5,
-                    };
+                        projectionTicket.Quantity += quantity;
+                        await this.ticketRepository.UpdateAsync(projectionTicket);
+                    }
+                    else
+                    {
+                        // TODO: Implement ticket pricing elsewhere
+                        Ticket newTicket = new Ticket()
+                        {
+                            Quantity = quantity,
+                            CinemaMovieProjection = projection,
+                            UserId = userId,
+                            Price = 5,
+                        };
 
-                    await this.ticketRepository.AddAsync(newTicket);
+                        await this.ticketRepository.AddAsync(newTicket);
+                    }
 
                     projection.AvailableTickets -= quantity;
                     result = await this.cinemaMovieRepository.UpdateAsync(projection);
