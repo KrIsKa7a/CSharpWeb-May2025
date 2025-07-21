@@ -72,6 +72,8 @@ namespace CinemaApp.Web
             app.UseAuthorization();
             app.UseManagerAccessRestriction();
 
+            app.UserAdminRedirection();
+
             app.MapControllerRoute(
                 name: "areas",
                 pattern: "{area}/{controller=Home}/{action=Index}/{id?}");
