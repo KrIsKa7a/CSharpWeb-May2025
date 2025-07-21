@@ -1,11 +1,11 @@
 namespace CinemaApp.Web
 {
     using Data;
+    using Data.Models;
     using Data.Repository.Interfaces;
     using Infrastructure.Extensions;
     using Services.Core.Interfaces;
-
-    using Microsoft.AspNetCore.Identity;
+    
     using Microsoft.EntityFrameworkCore;
 
     public class Program
@@ -26,7 +26,7 @@ namespace CinemaApp.Web
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services
-	            .AddDefaultIdentity<IdentityUser>(options =>
+	            .AddDefaultIdentity<ApplicationUser>(options =>
 	            {
 		            options.SignIn.RequireConfirmedEmail = false;
 		            options.SignIn.RequireConfirmedAccount = false;

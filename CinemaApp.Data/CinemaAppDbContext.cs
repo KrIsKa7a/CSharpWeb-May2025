@@ -7,7 +7,7 @@
 
     using Models;
 
-    public class CinemaAppDbContext : IdentityDbContext
+    public class CinemaAppDbContext : IdentityDbContext<ApplicationUser>
     {
         public CinemaAppDbContext(DbContextOptions<CinemaAppDbContext> options)
             : base(options)
@@ -26,6 +26,8 @@
         public virtual DbSet<Ticket> Tickets { get; set; } = null!;
 
         public virtual DbSet<Manager> Managers { get; set; } = null!;
+
+        public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

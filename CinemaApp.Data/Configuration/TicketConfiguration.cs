@@ -28,7 +28,7 @@
 
             entity
                 .HasOne(t => t.User)
-                .WithMany()
+                .WithMany(u => u.Tickets)
                 .HasForeignKey(t => t.UserId);
 
             entity
