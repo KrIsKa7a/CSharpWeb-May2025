@@ -16,21 +16,26 @@ namespace CinemaApp.Web.Areas.Identity.Pages.Account
 
     using Data.Models;
 
+    using static GCommon.ApplicationConstants;
+
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
         private readonly IUserStore<ApplicationUser> userStore;
         private readonly IUserEmailStore<ApplicationUser> emailStore;
         private readonly ILogger<RegisterModel> logger;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger)
         {
             this.userManager = userManager;
+            this.roleManager = roleManager;
             this.userStore = userStore;
             emailStore = GetEmailStore();
             this.signInManager = signInManager;
@@ -106,6 +111,20 @@ namespace CinemaApp.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     logger.LogInformation("User created a new account with password.");
+
+                    bool userRoleExists = await this.roleManager
+                        .RoleExistsAsync(UserRoleName);
+                    if (userRoleExists)
+                    {
+                        // This should be always the case
+                        result = await userManager
+                            .AddToRoleAsync(user, UserRoleName);
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(
+                                $"User can't be registered, because {UserRoleName} role can't be found!");
+                        }
+                    }
 
                     await signInManager.SignInAsync(user, isPersistent: false);
                     
