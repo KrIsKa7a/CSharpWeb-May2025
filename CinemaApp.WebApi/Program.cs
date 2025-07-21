@@ -1,6 +1,5 @@
 namespace CinemaApp.WebApi
 {
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
     using Data;

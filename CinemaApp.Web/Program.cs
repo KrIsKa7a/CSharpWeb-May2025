@@ -1,13 +1,17 @@
 namespace CinemaApp.Web
 {
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+
     using Data;
     using Data.Models;
     using Data.Repository.Interfaces;
+    using Data.Seeding;
+    using Data.Seeding.Interfaces;
     using Infrastructure.Extensions;
     using Services.Core.Interfaces;
     
-    using Microsoft.EntityFrameworkCore;
-
     public class Program
     {
         public static void Main(string[] args)
@@ -26,23 +30,18 @@ namespace CinemaApp.Web
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services
-	            .AddDefaultIdentity<ApplicationUser>(options =>
-	            {
-		            options.SignIn.RequireConfirmedEmail = false;
-		            options.SignIn.RequireConfirmedAccount = false;
-		            options.SignIn.RequireConfirmedPhoneNumber = false;
-
-		            options.Password.RequiredLength = 3;
-		            options.Password.RequireNonAlphanumeric = false;
-		            options.Password.RequireDigit = false;
-                    options.Password.RequireLowercase = false;
-                    options.Password.RequireUppercase = false;
-                    options.Password.RequiredUniqueChars = 0;
-	            })
+                .AddDefaultIdentity<ApplicationUser>(options =>
+                {
+                    ConfigureIdentity(builder.Configuration, options);
+                })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<CinemaAppDbContext>();
 
             builder.Services.AddRepositories(typeof(IMovieRepository).Assembly);
             builder.Services.AddUserDefinedServices(typeof(IMovieService).Assembly);
+            
+            // TODO: Implement as extension method
+            builder.Services.AddTransient<IIdentitySeeder, IdentitySeeder>();
 
             builder.Services.AddControllersWithViews();
 
@@ -67,6 +66,8 @@ namespace CinemaApp.Web
 
             app.UseRouting();
 
+            app.SeedDefaultIdentity();
+
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseManagerAccessRestriction();
@@ -77,6 +78,29 @@ namespace CinemaApp.Web
             app.MapRazorPages();
 
             app.Run();
+        }
+
+        private static void ConfigureIdentity(IConfigurationManager configurationManager, IdentityOptions identityOptions)
+        {
+            identityOptions.SignIn.RequireConfirmedEmail =
+                configurationManager.GetValue<bool>($"IdentityConfig:SignIn:RequireConfirmedEmail");
+            identityOptions.SignIn.RequireConfirmedAccount = 
+                configurationManager.GetValue<bool>($"IdentityConfig:SignIn:RequireConfirmedAccount");
+            identityOptions.SignIn.RequireConfirmedPhoneNumber = 
+                configurationManager.GetValue<bool>($"IdentityConfig:SignIn:RequireConfirmedPhoneNumber");
+
+            identityOptions.Password.RequiredLength = 
+                configurationManager.GetValue<int>($"IdentityConfig:Password:RequiredLength");
+            identityOptions.Password.RequireNonAlphanumeric = 
+                configurationManager.GetValue<bool>($"IdentityConfig:Password:RequireNonAlphanumeric");
+            identityOptions.Password.RequireDigit = 
+                configurationManager.GetValue<bool>($"IdentityConfig:Password:RequireDigit");
+            identityOptions.Password.RequireLowercase =
+                configurationManager.GetValue<bool>($"IdentityConfig:Password:RequireLowercase");
+            identityOptions.Password.RequireUppercase =
+                configurationManager.GetValue<bool>($"IdentityConfig:Password:RequireUppercase");
+            identityOptions.Password.RequiredUniqueChars =
+                configurationManager.GetValue<int>($"IdentityConfig:Password:RequiredUniqueChars");
         }
     }
 }
