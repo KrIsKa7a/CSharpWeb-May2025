@@ -11,5 +11,7 @@
         Task<CinemaManagementEditFormModel?> GetCinemaEditFormModelAsync(string? id);
 
         Task<bool> EditCinemaAsync(CinemaManagementEditFormModel? inputModel);
+
+        Task<Tuple<bool, bool>> DeleteOrRestoreCinemaAsync(string? id);
     }
 }

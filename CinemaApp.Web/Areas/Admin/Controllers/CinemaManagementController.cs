@@ -120,5 +120,27 @@
                 return this.RedirectToAction(nameof(Manage));
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ToggleDelete(string? id)
+        {
+            Tuple<bool, bool> opResult = await this.cinemaManagementService
+                .DeleteOrRestoreCinemaAsync(id);
+            bool success = opResult.Item1;
+            bool isRestored = opResult.Item2;
+
+            if (!success)
+            {
+                TempData[ErrorMessageKey] = "Cinema could not be found and updated!";
+            }
+            else
+            {
+                string operation = isRestored ? "restored" : "deleted";
+
+                TempData[SuccessMessageKey] = $"Cinema {operation} successfully!";
+            }
+
+            return this.RedirectToAction(nameof(Manage));
+        }
     }
 }

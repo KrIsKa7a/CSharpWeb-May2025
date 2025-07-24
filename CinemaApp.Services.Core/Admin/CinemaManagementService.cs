@@ -128,5 +128,32 @@
 
             return result;
         }
+
+        public async Task<Tuple<bool, bool>> DeleteOrRestoreCinemaAsync(string? id)
+        {
+            bool result = false;
+            bool isRestored = false;
+            if (!String.IsNullOrWhiteSpace(id))
+            {
+                Cinema? cinema = await this.cinemaRepository
+                    .GetAllAttached()
+                    .IgnoreQueryFilters()
+                    .SingleOrDefaultAsync(c => c.Id.ToString().ToLower() == id.ToLower());
+                if (cinema != null)
+                {
+                    if (cinema.IsDeleted)
+                    {
+                        isRestored = true;
+                    }
+
+                    cinema.IsDeleted = !cinema.IsDeleted;
+
+                    result = await this.cinemaRepository
+                        .UpdateAsync(cinema);
+                }
+            }
+
+            return new Tuple<bool, bool>(result, isRestored);
+        }
     }
 }
