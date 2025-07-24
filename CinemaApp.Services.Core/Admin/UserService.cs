@@ -11,11 +11,14 @@
     public class UserService : IUserService
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
         private readonly IManagerRepository managerRepository;
 
-        public UserService(UserManager<ApplicationUser> userManager, IManagerRepository managerRepository)
+        public UserService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, 
+            IManagerRepository managerRepository)
         {
             this.userManager = userManager;
+            this.roleManager = roleManager;
             this.managerRepository = managerRepository;
         }
 
@@ -46,6 +49,36 @@
                 .ToArrayAsync();
 
             return managerEmails;
+        }
+
+        public async Task<bool> AssignUserToRoleAsync(RoleSelectionInputModel inputModel)
+        {
+            ApplicationUser? user = await this.userManager
+                .FindByIdAsync(inputModel.UserId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("User does not exist!");
+            }
+
+            bool roleExists = await this.roleManager.RoleExistsAsync(inputModel.Role);
+            if (!roleExists)
+            {
+                throw new ArgumentException("Selected role is not a valid role!");
+            }
+
+            try
+            {
+                await this.userManager.AddToRoleAsync(user, inputModel.Role);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException(
+                    "Unexpected error occurred while adding the user to role! Please try again later!",
+                    innerException: e);
+            }
         }
     }
 }

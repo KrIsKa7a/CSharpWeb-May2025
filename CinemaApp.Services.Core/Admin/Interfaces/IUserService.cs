@@ -7,5 +7,7 @@
         Task<IEnumerable<UserManagementIndexViewModel>> GetUserManagementBoardDataAsync(string userId);
 
         Task<IEnumerable<string>> GetManagerEmailsAsync();
+
+        Task<bool> AssignUserToRoleAsync(RoleSelectionInputModel inputModel);
     }
 }
