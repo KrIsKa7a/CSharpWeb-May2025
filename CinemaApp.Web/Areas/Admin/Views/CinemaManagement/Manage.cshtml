@@ -1,0 +1,72 @@
+﻿@using CinemaApp.Web.ViewModels.Admin.CinemaManagement
+@model IEnumerable<CinemaManagementIndexViewModel>
+
+@{
+    ViewData["Title"] = "Manage Cinemas";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center text-warning fw-bold">Manage Cinemas</h1>
+    <p class="text-center text-muted">View, edit, or delete cinema entries.</p>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-secondary fw-bold">
+            <i class="bi bi-arrow-left"></i> Back to Dashboard
+        </a>
+        <a asp-action="Create" class="btn btn-success fw-bold shadow-lg">
+            <i class="bi bi-plus-circle"></i> Add New Cinema
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center" role="alert">
+            <i class="bi bi-exclamation-circle"></i> No cinemas available. Click "Add New Cinema" to create one.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-dark table-hover shadow-lg rounded-3">
+                <thead class="thead-light">
+                    <tr class="text-warning text-center">
+                        <th scope="col">Name</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CinemaManagementIndexViewModel cinema in Model)
+                    {
+                        <tr class="align-middle text-center @(cinema.IsDeleted ? "table-danger" : "")">
+                            <td class="fw-bold">
+                                @cinema.Name
+                                @if (cinema.IsDeleted)
+                                {
+                                    <span class="badge bg-danger ms-2">Deleted</span>
+                                }
+                            </td>
+                            <td>@cinema.Location</td>
+                            <td>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a asp-action="Edit" asp-route-id="@cinema.Id" class="btn btn-primary btn-sm fw-bold">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+
+                                    <form id="toggleDeleteForm-@cinema.Id" asp-action="ToggleDelete" asp-route-id="@cinema.Id" method="post" class="d-inline">
+                                        <button type="button" class="btn @(cinema.IsDeleted ? "btn-warning" : "btn-danger") btn-sm fw-bold"
+                                                onclick="confirmToggleDelete('@cinema.Id', '@(cinema.IsDeleted ? "restore" : "delete")')">
+                                            <i class="bi @(cinema.IsDeleted ? "bi-arrow-clockwise" : "bi-trash")"></i>
+                                    @(cinema.IsDeleted ? "Restore" : "Delete")
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
