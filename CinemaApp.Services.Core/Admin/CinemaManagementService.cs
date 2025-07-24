@@ -71,5 +71,62 @@
 
             return result;
         }
+
+        public async Task<CinemaManagementEditFormModel?> GetCinemaEditFormModelAsync(string? id)
+        {
+            CinemaManagementEditFormModel? formModel = null;
+            if (!String.IsNullOrWhiteSpace(id))
+            {
+                Cinema? cinemaToEdit = await this.cinemaRepository
+                    .GetAllAttached()
+                    .Include(c => c.Manager)
+                    .ThenInclude(m => m.User)
+                    .IgnoreQueryFilters()
+                    .SingleOrDefaultAsync(c => c.Id.ToString().ToLower() == id.ToLower());
+                if (cinemaToEdit != null)
+                {
+                    formModel = new CinemaManagementEditFormModel()
+                    {
+                        Id = cinemaToEdit.Id.ToString(),
+                        Name = cinemaToEdit.Name,
+                        Location = cinemaToEdit.Location,
+                        ManagerEmail = cinemaToEdit.Manager != null ?
+                            cinemaToEdit.Manager.User.Email ?? string.Empty : string.Empty,
+                    };
+                }
+            }
+
+            return formModel;
+        }
+
+        public async Task<bool> EditCinemaAsync(CinemaManagementEditFormModel? inputModel)
+        {
+            bool result = false;
+            if (inputModel != null)
+            {
+                ApplicationUser? managerUser = await this.userManager
+                    .FindByNameAsync(inputModel.ManagerEmail);
+                if (managerUser != null)
+                {
+                    Manager? manager = await this.managerRepository
+                        .GetAllAttached()
+                        .SingleOrDefaultAsync(m => m.UserId.ToLower() == managerUser.Id.ToLower());
+                    Cinema? cinemaToEdit = await this.cinemaRepository
+                        .SingleOrDefaultAsync(c => c.Id.ToString().ToLower() == inputModel.Id.ToLower());
+                    if (manager != null &&
+                        cinemaToEdit != null)
+                    {
+                        cinemaToEdit.Name = inputModel.Name;
+                        cinemaToEdit.Location = inputModel.Location;
+                        cinemaToEdit.Manager = manager;
+
+                        result = await this.cinemaRepository
+                            .UpdateAsync(cinemaToEdit);
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }
