@@ -32,6 +32,7 @@
                     <tr class="text-warning text-center">
                         <th scope="col">Name</th>
                         <th scope="col">Location</th>
+                        <th scope="col">Manager</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -47,6 +48,7 @@
                                 }
                             </td>
                             <td>@cinema.Location</td>
+                            <td>@cinema.ManagerName</td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <a asp-action="Edit" asp-route-id="@cinema.Id" class="btn btn-primary btn-sm fw-bold">

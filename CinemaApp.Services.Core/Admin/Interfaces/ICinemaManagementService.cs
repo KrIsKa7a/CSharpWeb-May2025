@@ -5,5 +5,7 @@
     public interface ICinemaManagementService
     {
         Task<IEnumerable<CinemaManagementIndexViewModel>> GetCinemaManagementBoardDataAsync();
+
+        Task<bool> AddCinemaAsync(CinemaManagementAddFormModel? inputModel);
     }
 }

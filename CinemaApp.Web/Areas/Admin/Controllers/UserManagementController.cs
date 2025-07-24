@@ -1,12 +1,11 @@
 ﻿namespace CinemaApp.Web.Areas.Admin.Controllers
 {
-    using CinemaApp.Web.ViewModels.Admin.UserManagement;
+    using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc;
 
+    using CinemaApp.Web.ViewModels.Admin.UserManagement;
     using Services.Core.Admin.Interfaces;
-
-    using System.Collections.Generic;
 
     public class UserManagementController : BaseAdminController
     {
@@ -17,6 +16,7 @@
             this.userService = userService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             IEnumerable<UserManagementIndexViewModel> allUsers = await this.userService

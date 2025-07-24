@@ -1,0 +1,56 @@
+﻿@model CinemaApp.Web.ViewModels.Admin.CinemaManagement.CinemaManagementAddFormModel
+
+@{
+    ViewData["Title"] = "Add New Cinema";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center text-warning fw-bold">Add a New Cinema</h2>
+    <hr class="mb-4">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Create" method="post" class="bg-dark text-light p-4 rounded shadow-lg">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold">Cinema Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter cinema name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Location" class="form-label fw-bold">Location</label>
+                    <input asp-for="Location" class="form-control" placeholder="Enter location">
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="ManagerEmail" class="form-label fw-bold">Manager</label>
+                    <select asp-for="ManagerEmail" class="form-select">
+                        <option value="" disabled selected>Select Manager for the cinema...</option>
+                        @if (Model.AppManagerEmails != null)
+                        {
+                            @foreach (string managerEmail in Model.AppManagerEmails)
+                            {
+                                <option value="@managerEmail">@managerEmail</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="ManagerEmail" class="text-danger"></span>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success fw-bold px-4">
+                        <i class="bi bi-plus-circle"></i> Add Cinema
+                    </button>
+                    <a asp-action="Manage" class="btn btn-outline-light ms-2">
+                        <i class="bi bi-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

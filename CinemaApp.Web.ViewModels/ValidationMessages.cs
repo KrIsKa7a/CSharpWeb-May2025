@@ -31,5 +31,16 @@
             public const string ServiceCreateError =
                 "Fatal error occurred while adding your movie! Please try again later!";
         }
+
+        public static class Cinema
+        {
+            public const string NameRequiredMessage = "Cinema name is required.";
+            public const string NameMinLengthMessage = "Cinema name must be at least 2 characters.";
+            public const string NameMaxLengthMessage = "Cinema name cannot exceed 80 characters.";
+
+            public const string LocationRequiredMessage = "Cinema location is required.";
+            public const string LocationMinLengthMessage = "Cinema location must be at least 2 characters.";
+            public const string LocationMaxLengthMessage = "Cinema location cannot exceed 50 characters.";
+        }
     }
 }

@@ -4,6 +4,7 @@
 
     public class HomeController : BaseAdminController
     {
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
