@@ -8,14 +8,14 @@
     using Interfaces;
     using Web.ViewModels.Admin.CinemaManagement;
 
-    public class CinemaManagementService : ICinemaManagementService
+    public class CinemaManagementService : CinemaService, ICinemaManagementService
     {
         private readonly ICinemaRepository cinemaRepository;
         private readonly IManagerRepository managerRepository;
         private readonly UserManager<ApplicationUser> userManager;
 
         public CinemaManagementService(ICinemaRepository cinemaRepository, 
-            IManagerRepository managerRepository, UserManager<ApplicationUser> userManager)
+            IManagerRepository managerRepository, UserManager<ApplicationUser> userManager) : base(cinemaRepository)
         {
             this.cinemaRepository = cinemaRepository;
             this.managerRepository = managerRepository;

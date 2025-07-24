@@ -1,8 +1,9 @@
 ﻿namespace CinemaApp.Services.Core.Admin.Interfaces
 {
+    using Core.Interfaces;
     using Web.ViewModels.Admin.CinemaManagement;
 
-    public interface ICinemaManagementService
+    public interface ICinemaManagementService : ICinemaService
     {
         Task<IEnumerable<CinemaManagementIndexViewModel>> GetCinemaManagementBoardDataAsync();
 
