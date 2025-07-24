@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [Authorize]
+    [AutoValidateAntiforgeryToken]
     public abstract class BaseController : Controller
     {
         protected bool IsUserAuthenticated()
