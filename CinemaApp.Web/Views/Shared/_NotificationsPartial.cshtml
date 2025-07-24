@@ -1,0 +1,21 @@
+﻿@using static CinemaApp.GCommon.ApplicationConstants
+
+@if (TempData[InfoMessageKey] != null)
+{
+    <script>toastr.info("@TempData[InfoMessageKey]")</script>
+}
+
+@if (TempData[SuccessMessageKey] != null)
+{
+    <script>toastr.success("@TempData[SuccessMessageKey]")</script>
+}
+
+@if (TempData[WarningMessageKey] != null)
+{
+    <script>toastr.warning("@TempData[WarningMessageKey]")</script>
+}
+
+@if (TempData[ErrorMessageKey] != null)
+{
+    <script>toastr.error("@TempData[ErrorMessageKey]")</script>
+}

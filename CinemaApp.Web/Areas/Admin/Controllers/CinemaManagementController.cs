@@ -5,6 +5,8 @@
     using Services.Core.Admin.Interfaces;
     using ViewModels.Admin.CinemaManagement;
 
+    using static GCommon.ApplicationConstants;
+
     public class CinemaManagementController : BaseAdminController
     {
         private readonly ICinemaManagementService cinemaManagementService;
@@ -51,15 +53,21 @@
                     .AddCinemaAsync(inputModel);
                 if (!success)
                 {
-                    return this.BadRequest();
+                    TempData[ErrorMessageKey] = "Error occurred while adding the cinema! Ensure to select a valid manager!";
+                }
+                else
+                {
+                    TempData[SuccessMessageKey] = "Cinema created successfully!";
                 }
 
                 return this.RedirectToAction(nameof(Manage));
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                TempData[ErrorMessageKey] =
+                    "Unexpected error occurred while adding the cinema! Please contact developer team!";
+
+                return this.RedirectToAction(nameof(Manage));
             }
         }
     }
