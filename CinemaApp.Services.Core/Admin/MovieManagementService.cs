@@ -2,6 +2,7 @@
 {
     using Microsoft.EntityFrameworkCore;
 
+    using Data.Models;
     using Data.Repository.Interfaces;
     using Interfaces;
     using Web.ViewModels.Admin.MovieManagement;
@@ -37,6 +38,33 @@
                 .ToArrayAsync();
 
             return allMovies;
+        }
+
+        public async Task<Tuple<bool, bool>> DeleteOrRestoreMovieAsync(string? id)
+        {
+            bool result = false;
+            bool isRestored = false;
+            if (!String.IsNullOrWhiteSpace(id))
+            {
+                Movie? movie = await this.movieRepository
+                    .GetAllAttached()
+                    .IgnoreQueryFilters()
+                    .SingleOrDefaultAsync(m => m.Id.ToString().ToLower() == id.ToLower());
+                if (movie != null)
+                {
+                    if (movie.IsDeleted)
+                    {
+                        isRestored = true;
+                    }
+
+                    movie.IsDeleted = !movie.IsDeleted;
+
+                    result = await this.movieRepository
+                        .UpdateAsync(movie);
+                }
+            }
+
+            return new Tuple<bool, bool>(result, isRestored);
         }
     }
 }

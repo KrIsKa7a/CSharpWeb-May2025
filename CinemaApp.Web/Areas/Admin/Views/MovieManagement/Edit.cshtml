@@ -1,4 +1,4 @@
-﻿@using CinemaApp.Web.ViewModels.Movie
+﻿@using CinemaApp.Web.ViewModels.Admin.MovieManagement
 @model MovieFormInputModel
 
 @{
@@ -61,7 +61,7 @@
                     <button type="submit" class="btn btn-primary fw-bold px-4">
                         <i class="bi bi-save"></i> Save Changes
                     </button>
-                    <a asp-action="Index" asp-controller="Movie" class="btn btn-outline-light ms-2">
+                    <a asp-action="Manage" asp-controller="MovieManagement" class="btn btn-outline-light ms-2">
                         <i class="bi bi-arrow-left"></i> Back to All Movies
                     </a>
                 </div>

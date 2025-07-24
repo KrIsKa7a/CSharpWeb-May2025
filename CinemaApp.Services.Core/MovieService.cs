@@ -3,12 +3,13 @@
     using System.Globalization;
 
     using Microsoft.EntityFrameworkCore;
-    
+
     using Data.Models;
     using Data.Repository.Interfaces;
     using Interfaces;
     using Web.ViewModels.Movie;
     using static GCommon.ApplicationConstants;
+    using CinemaApp.Web.ViewModels.Admin.MovieManagement;
 
     public class MovieService : IMovieService
     {
@@ -142,24 +143,6 @@
             result = await this.movieRepository.UpdateAsync(editableMovie);
 
             return result;
-        }
-
-        public async Task<DeleteMovieViewModel?> GetMovieDeleteDetailsByIdAsync(string? id)
-        {
-            DeleteMovieViewModel? deleteMovieViewModel = null;
-
-            Movie? movieToBeDeleted = await this.FindMovieByStringId(id);
-            if (movieToBeDeleted != null)
-            {
-                deleteMovieViewModel = new DeleteMovieViewModel()
-                {
-                    Id = movieToBeDeleted.Id.ToString(),
-                    Title = movieToBeDeleted.Title,
-                    ImageUrl = movieToBeDeleted.ImageUrl ?? $"/images/{NoImageUrl}",
-                };
-            }
-
-            return deleteMovieViewModel;
         }
 
         public async Task<bool> SoftDeleteMovieAsync(string? id)

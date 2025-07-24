@@ -1,4 +1,4 @@
-﻿namespace CinemaApp.Web.ViewModels.Movie
+﻿namespace CinemaApp.Web.ViewModels.Admin.MovieManagement
 {
     using System.ComponentModel.DataAnnotations;
 

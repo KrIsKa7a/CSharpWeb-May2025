@@ -6,5 +6,7 @@
     public interface IMovieManagementService : IMovieService
     {
         Task<IEnumerable<MovieManagementIndexViewModel>> GetMovieManagementBoardDataAsync();
+
+        Task<Tuple<bool, bool>> DeleteOrRestoreMovieAsync(string? id);
     }
 }

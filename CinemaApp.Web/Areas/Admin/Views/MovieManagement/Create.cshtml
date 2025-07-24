@@ -1,5 +1,5 @@
 ﻿@using static CinemaApp.GCommon.ApplicationConstants;
-@model CinemaApp.Web.ViewModels.Movie.MovieFormInputModel
+@model CinemaApp.Web.ViewModels.Admin.MovieManagement.MovieFormInputModel
 
 @{
     ViewData["Title"] = "Add New Movie";
@@ -17,7 +17,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form asp-controller="Movie" asp-action="Add" method="post" class="bg-dark text-light p-4 rounded shadow-lg">
+            <form asp-controller="MovieManagement" asp-action="Create" method="post" class="bg-dark text-light p-4 rounded shadow-lg">
                 <div class="mb-3">
                     <label asp-for="Title" class="form-label fw-bold">Movie Title</label>
                     <input asp-for="Title" class="form-control" placeholder="Enter movie title">

@@ -1,5 +1,6 @@
 ﻿namespace CinemaApp.Services.Core.Interfaces
 {
+    using CinemaApp.Web.ViewModels.Admin.MovieManagement;
     using Web.ViewModels.Movie;
 
     public interface IMovieService
@@ -13,8 +14,6 @@
         Task<MovieFormInputModel?> GetEditableMovieByIdAsync(string? id);
 
         Task<bool> EditMovieAsync(MovieFormInputModel inputModel);
-
-        Task<DeleteMovieViewModel?> GetMovieDeleteDetailsByIdAsync(string? id);
 
         Task<bool> SoftDeleteMovieAsync(string? id);
 

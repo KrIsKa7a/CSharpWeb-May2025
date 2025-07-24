@@ -43,6 +43,7 @@
                             <i class="bi bi-camera-reels"></i> Movies
                         </a>
                     </li>
+
                     @if (User?.Identity?.IsAuthenticated ?? false)
                     {
                         <li class="nav-item">
@@ -55,11 +56,33 @@
                                 <i class="bi bi-bookmark-star"></i> Watchlist
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Movie" asp-action="Add">
-                                <i class="bi bi-ticket-perforated"></i> Add Movie
-                            </a>
-                        </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light fw-bold" href="#" id="manageDropdown"
+                                   role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-tools"></i> Admin
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark border-0">
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="UserManagement" asp-action="Index">
+                                            <i class="bi bi-building"></i> Manage Users
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="CinemaManagement" asp-action="Manage">
+                                            <i class="bi bi-camera-reels"></i> Manage Cinemas
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="MovieManagement" asp-action="Manage">
+                                            <i class="bi bi-ticket-detailed"></i> Manage Movies
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
                     }
                 </ul>
                 <partial name="_LoginPartial"/>
