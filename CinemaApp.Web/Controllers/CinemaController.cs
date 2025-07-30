@@ -5,6 +5,7 @@
 
     using Services.Core.Interfaces;
     using ViewModels.Cinema;
+    using static GCommon.ApplicationConstants;
 
     public class CinemaController : BaseController
     {
@@ -29,6 +30,7 @@
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                TempData[ErrorMessageKey] = "An error occurred while processing your request! Please try again later!";
 
                 return this.RedirectToAction(nameof(Index), "Home");
             }
