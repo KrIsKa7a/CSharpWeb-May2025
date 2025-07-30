@@ -1,13 +1,14 @@
 ﻿namespace CinemaApp.Services.Tests
 {
     using System.Linq.Expressions;
+
+    using MockQueryable;
+    using Moq;
+
     using Core;
     using Core.Interfaces;
     using Data.Models;
-    using Moq;
-
     using Data.Repository.Interfaces;
-    using MockQueryable;
 
     [TestFixture]
     public class ManagerServiceTests
