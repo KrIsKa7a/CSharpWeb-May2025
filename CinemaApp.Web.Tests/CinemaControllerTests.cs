@@ -1,13 +1,14 @@
 ﻿namespace CinemaApp.Web.Tests
 {
-    using Controllers;
     using Services.Core.Interfaces;
 
-    using Moq;
-    using CinemaApp.Web.ViewModels.Cinema;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+    using Moq;
+
+    using Controllers;
+    using ViewModels.Cinema;
 
     [TestFixture]
     public class CinemaControllerTests
