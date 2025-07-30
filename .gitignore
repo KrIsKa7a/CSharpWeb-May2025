@@ -399,3 +399,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/CinemaWeb-May-2025.lutconfig
